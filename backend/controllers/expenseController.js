@@ -55,7 +55,7 @@ exports.downloadExpenseExcel = async (req, res) => {
       {
         Source: item.source,
         Amount: item.amount,
-        Date: item.date,
+        Date: item.date.toISOString().split('T')[0]
       }
     )   )
     const wb = xlsx.utils.book_new();

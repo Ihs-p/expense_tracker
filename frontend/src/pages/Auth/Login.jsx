@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { validateEmail } from '../../utils/helper'
 import axiosInstance from '../../utils/axiosInstance'
 import { API_PATHS } from '../../utils/apiPaths'
-import { UserContext } from '../../context/userContext'
+import { UserContext } from '../../context/UserContext'
 
 const Login = () => {
   const [email,setEmail] = useState('')
@@ -42,6 +42,7 @@ const Login = () => {
       if(token){
     
         localStorage.setItem('token',token)
+        localStorage.setItem('user', JSON.stringify(user));
         updateUser(user)
         navigate('/dashboard')
       }
@@ -49,6 +50,7 @@ const Login = () => {
       if(error.response && error.response.data.message){
         setError(error.response.data.message)
       }else{
+        console.log(error)
         setError("something went wrong, please try again ")
         
       }
